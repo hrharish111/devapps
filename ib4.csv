@@ -1,0 +1,51 @@
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+AboveTestPlatform,ap-southeast-1,i-4d1fa4c3,running,54.169.253.86,ec2-54-169-253-86.ap-southeast-1.compute.amazonaws.com
+Jenkins,ap-southeast-1,i-88983d47,running,54.254.240.141,ec2-54-254-240-141.ap-southeast-1.compute.amazonaws.com
+JDA_Stage,ap-southeast-1,i-25fc89e9,running,52.74.185.179,ec2-52-74-185-179.ap-southeast-1.compute.amazonaws.com
+Raghav,ap-southeast-1,i-ffdd8d33,running,52.74.232.79,ec2-52-74-232-79.ap-southeast-1.compute.amazonaws.com
+Ganjam_stage,ap-southeast-1,i-54502998,running,52.74.206.119,ec2-52-74-206-119.ap-southeast-1.compute.amazonaws.com
+AYNY,ap-southeast-1,i-b67b4b7a,running,52.74.25.201,ec2-52-74-25-201.ap-southeast-1.compute.amazonaws.com
+Galen,ap-southeast-1,i-07e3c6ca,running,52.74.206.134,ec2-52-74-206-134.ap-southeast-1.compute.amazonaws.com
+Above-inc.com-Prod,ap-southeast-1,i-41c1d98c,running,52.76.243.204,ec2-52-76-243-204.ap-southeast-1.compute.amazonaws.com
+Eventshop,ap-southeast-1,i-3d4b9bf2,running,54.254.138.95,ec2-54-254-138-95.ap-southeast-1.compute.amazonaws.com
+wiki,ap-southeast-1,i-76e986f8,running,52.77.255.222,ec2-52-77-255-222.ap-southeast-1.compute.amazonaws.com
+radiowalla_stage,ap-southeast-1,i-33939fff,running,52.76.7.213,ec2-52-76-7-213.ap-southeast-1.compute.amazonaws.com
+Win_poc_bala,ap-southeast-1,i-7d94ddd9,running,52.77.219.133,ec2-52-77-219-133.ap-southeast-1.compute.amazonaws.com
+Above.com-stage,ap-southeast-1,i-6db187a1,running,52.74.229.192,ec2-52-74-229-192.ap-southeast-1.compute.amazonaws.com
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+AboveTestPlatform,ap-southeast-1,i-4d1fa4c3,running,54.169.253.86,ec2-54-169-253-86.ap-southeast-1.compute.amazonaws.com
+Jenkins,ap-southeast-1,i-b8374136,running,52.77.214.154,ec2-52-77-214-154.ap-southeast-1.compute.amazonaws.com
+JDA_Stage,ap-southeast-1,i-25fc89e9,running,52.74.185.179,ec2-52-74-185-179.ap-southeast-1.compute.amazonaws.com
+Raghav,ap-southeast-1,i-ffdd8d33,running,52.74.232.79,ec2-52-74-232-79.ap-southeast-1.compute.amazonaws.com
+Ganjam_stage,ap-southeast-1,i-54502998,running,52.74.206.119,ec2-52-74-206-119.ap-southeast-1.compute.amazonaws.com
+AYNY,ap-southeast-1,i-b67b4b7a,running,52.74.25.201,ec2-52-74-25-201.ap-southeast-1.compute.amazonaws.com
+Galen,ap-southeast-1,i-07e3c6ca,running,52.74.206.134,ec2-52-74-206-134.ap-southeast-1.compute.amazonaws.com
+Above-inc.com-Prod,ap-southeast-1,i-41c1d98c,running,52.76.243.204,ec2-52-76-243-204.ap-southeast-1.compute.amazonaws.com
+Eventshop,ap-southeast-1,i-3d4b9bf2,running,54.254.138.95,ec2-54-254-138-95.ap-southeast-1.compute.amazonaws.com
+wiki,ap-southeast-1,i-76e986f8,running,52.77.255.222,ec2-52-77-255-222.ap-southeast-1.compute.amazonaws.com
+radiowalla_stage,ap-southeast-1,i-33939fff,running,52.76.7.213,ec2-52-76-7-213.ap-southeast-1.compute.amazonaws.com
+Win_poc_bala,ap-southeast-1,i-7d94ddd9,running,52.77.219.133,ec2-52-77-219-133.ap-southeast-1.compute.amazonaws.com
+Above.com-stage,ap-southeast-1,i-6db187a1,running,52.74.229.192,ec2-52-74-229-192.ap-southeast-1.compute.amazonaws.com
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+Tag Name,Region,Instance ID,Instance State,Instance IP,DNS_Name
+AboveTestPlatform,ap-southeast-1,i-4d1fa4c3,running,54.169.253.86,ec2-54-169-253-86.ap-southeast-1.compute.amazonaws.com
+Jenkins,ap-southeast-1,i-b8374136,running,52.77.214.154,ec2-52-77-214-154.ap-southeast-1.compute.amazonaws.com
+JDA_Stage,ap-southeast-1,i-25fc89e9,running,52.74.185.179,ec2-52-74-185-179.ap-southeast-1.compute.amazonaws.com
+Raghav,ap-southeast-1,i-ffdd8d33,running,52.74.232.79,ec2-52-74-232-79.ap-southeast-1.compute.amazonaws.com
+Ganjam_stage,ap-southeast-1,i-54502998,running,52.74.206.119,ec2-52-74-206-119.ap-southeast-1.compute.amazonaws.com
+AYNY,ap-southeast-1,i-b67b4b7a,running,52.74.25.201,ec2-52-74-25-201.ap-southeast-1.compute.amazonaws.com
+Galen,ap-southeast-1,i-07e3c6ca,running,52.74.206.134,ec2-52-74-206-134.ap-southeast-1.compute.amazonaws.com
+Above-inc.com-Prod,ap-southeast-1,i-41c1d98c,running,52.76.243.204,ec2-52-76-243-204.ap-southeast-1.compute.amazonaws.com
+Eventshop,ap-southeast-1,i-3d4b9bf2,running,54.254.138.95,ec2-54-254-138-95.ap-southeast-1.compute.amazonaws.com
+wiki,ap-southeast-1,i-76e986f8,running,52.77.255.222,ec2-52-77-255-222.ap-southeast-1.compute.amazonaws.com
+radiowalla_stage,ap-southeast-1,i-33939fff,running,52.76.7.213,ec2-52-76-7-213.ap-southeast-1.compute.amazonaws.com
+Win_poc_bala,ap-southeast-1,i-7d94ddd9,running,52.77.219.133,ec2-52-77-219-133.ap-southeast-1.compute.amazonaws.com
+Above.com-stage,ap-southeast-1,i-6db187a1,running,52.74.229.192,ec2-52-74-229-192.ap-southeast-1.compute.amazonaws.com

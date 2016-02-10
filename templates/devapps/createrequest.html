@@ -1,0 +1,7 @@
+{% include "devapps/form_data.html" %}
+<h2 style="color:red;">{{invalid}}</h2>
+
+<form id="div1" class="targetDiv" method="POST" action="create_my_form" >
+{{ form.as_p }}
+<input type = "submit" value="submit">
+</form>

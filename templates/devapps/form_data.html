@@ -1,0 +1,45 @@
+{% if user.is_authenticated %}
+<h1>welcome {{user}} your are an authenticated user</h1>
+
+<hr style="border-top: dotted 1px;" />
+
+<button id="button" onclick="window.location.href='/userdetails'">View</button>
+<button id="button" onclick="window.location.href='/create_my_form'">Create Form</button>
+<button id="button" onclick="window.location.href='/existinglist'">Existing</button>
+<hr style="border-top: dotted 1px;" />
+{% endif %}
+
+<style>
+
+hr {
+    border-top:1px dotted #000;
+    /*Rest of stuff here*/
+}
+
+
+#button {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+</style>

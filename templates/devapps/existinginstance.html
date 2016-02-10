@@ -1,0 +1,175 @@
+{% load staticfiles %}
+
+
+{% include "devapps/form_data.html" %}
+
+<input type="text" id="search" placeholder="Type to search">
+
+<div id="div3" class="targetDiv" >
+<table id ="table" border="1" style="width:100%">
+<tr>
+<th>Instance Name</th>
+<th>Region</th>
+<th>Instance Id</th>
+<th>Instance State</th>
+<th>Instance IP Address</th>
+<th>Instance Type</th>
+</tr>
+
+{% for i in existing %}
+<tr>
+<td><a href='projectview/?insname={{i.0}}&region={{i.1}}&ins_id={{i.2}}&ins_state={{i.3}}&ins_ip={{i.4}}&ins_type={{i.5}}'>{{i.0}}</a> </td>
+<td>{{i.1}}</td>
+<td>{{i.2}}</td>
+<td>{{i.3}}</td>
+<td>{{i.4}}</td>
+<td>{{i.5}}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static 'devapps/paging.js' %}"></script> 
+
+
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('#table').paging({limit:11});
+            });
+    </script>
+
+<script>
+
+     // Write on keyup event of keyword input element
+    $("#search").keyup(function(){
+        _this = this;
+        // Show only matching TR, hide rest of them
+        $.each($("#table tbody tr"), function() {
+            if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+               $(this).hide();
+            else
+               $(this).show();                
+        });
+    }); 
+
+
+</script>
+
+
+<style>
+
+body {padding: 20px;}
+input {margin-bottom: 5px; padding: 2px 3px; width: 209px;}
+td {padding: 4px; border: 1px #CCC solid; width: 100px;}
+
+.paging-nav {
+  text-align: right;
+  padding-top: 2px;
+}
+
+.paging-nav a {
+  margin: auto 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 7px;
+  background: #91b9e6;
+  color: white;
+  border-radius: 3px;
+}
+
+.paging-nav .selected-page {
+  background: #187ed5;
+  font-weight: bold;
+}
+
+.paging-nav,
+#table-demo {
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+</style>
+
+
+
+
+
+	
+       
+	
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="pagination">
+    <span class="step-links">
+        {% if existing.has_previous %}
+            <a href="?page={{ existing.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ existing.number }} of {{ existing.paginator.num_pages }}.
+        </span>
+
+        {% if existing.has_next %}
+            <a href="?page={{ existing.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script>
+var $rows = $('#table tr');
+$('#search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
+
+</script> 
+
+ -->

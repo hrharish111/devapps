@@ -1,0 +1,112 @@
+{% include "devapps/form_data.html" %}
+{% load filters %}
+{% load staticfiles %}
+
+<div id="div1" class="targetDiv">
+</br>
+<h4>Search  <input type="text" id="search" placeholder="Type to search..." /></h4>
+
+<table id = "table-demo" class="paginated" border="1" style="width:100%">
+	<thead>
+		<th>Project Name</th>
+		<th>Instance Type</th>
+		<th>Storage</th>
+		<th>Customer</th>
+		<th>Stack</th>
+		<th>Specification</th>
+		<th>S3 Backet</th>
+		<th>Server Access</th>
+		<th>DB Access</th>
+		<th>Summary</th>
+	</thead>
+	{% for item in userview %}
+	<tbody>
+	<tr>
+	<td>{{item.project_Name}}</td>
+	<td>{{ item.instance_type }}</td>
+	<td>{{ item.storage }}</td>
+	<td>{{ item.customer }}</td>
+	<td>{{ item.stack|clean_unicode }}</td>
+	<td>{{item.specification}}</td>
+	<td>{{item.s3backet}}</td>
+	<td>{{item.server_access}}</td>
+	<td>{{item.db_access}}</td>
+	<td>{{item.summary}}</td>
+	</tr>
+	</tbody>
+	{% endfor %}
+	
+</table>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static 'devapps/paging.js' %}"></script> 
+
+<script>
+
+     // Write on keyup event of keyword input element
+    $("#search").keyup(function(){
+        _this = this;
+        // Show only matching TR, hide rest of them
+        $.each($("#table-demo tbody tr"), function() {
+            if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+               $(this).hide();
+            else
+               $(this).show();                
+        });
+    }); 
+
+
+</script>
+
+
+
+
+<style>
+
+body {padding: 20px;}
+input {margin-bottom: 5px; padding: 2px 3px; width: 209px;}
+td {padding: 4px; border: 1px #CCC solid; width: 100px;}
+
+.paging-nav {
+  text-align: right;
+  padding-top: 2px;
+}
+
+.paging-nav a {
+  margin: auto 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 7px;
+  background: #91b9e6;
+  color: white;
+  border-radius: 3px;
+}
+
+.paging-nav .selected-page {
+  background: #187ed5;
+  font-weight: bold;
+}
+
+.paging-nav,
+#table-demo {
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+</style>
+
+
+
+
+
+
+	<script type="text/javascript">
+            $(document).ready(function() {
+                $('#table-demo').paging({limit:11});
+            });
+    </script>
+       
+	
+</div>
+

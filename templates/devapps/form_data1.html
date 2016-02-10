@@ -1,0 +1,156 @@
+{% load filters %}
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</head>	
+</head>
+<body>
+{% if user.is_authenticated %}
+welcome {{user}} your are an authenticated user
+<div class="buttons">
+    <input type="button"  class="show" target="1" value="view">
+    <input type="button"  class="show" target="2" value="create" >
+    <input type="button"  class="show" target="3" value="existing" >
+   
+</div>
+
+<div id="div1" class="targetDiv">
+</br>
+<table>
+	<tr>
+		<th>Project Name</th>
+		<th>Instance Type</th>
+		<th>Storage</th>
+		<th>Customer</th>
+		<th>Stack</th>
+		<th>Specification</th>
+		<th>S3 Backet</th>
+		<th>Server Access</th>
+		<th>DB Access</th>
+		<th>Summary</th>
+	</tr>
+	{% for item in user_views %}
+	<tr>
+	<td>{{item.project_Name}}</td>
+	<td>{{ item.instance_type }}</td>
+	<td>{{ item.storage }}</td>
+	<td>{{ item.customer }}</td>
+	<td>{{ item.stack|clean_unicode }}</td>
+	<td>{{item.specification}}</td>
+	<td>{{item.s3backet}}</td>
+	<td>{{item.server_access}}</td>
+	<td>{{item.db_access}}</td>
+	<td>{{item.summary}}</td>
+	</tr>
+	{% endfor %}
+	
+</table>
+
+	
+	
+	<div class="pagination">
+    <span class="step-links">
+        {% if user_views.has_previous %}
+            <a href="?page={{ user_views.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ user_views.number }} of {{ user_view.paginator.num_pages }}.
+        </span>
+
+        {% if user_views.has_next %}
+            <a href="?page={{ user_views.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+	
+	
+	
+</div>
+
+<form id="div2" class="targetDiv" method="POST" action="create_my_form" >
+<br/>
+ Project Name:  {{form.project_Name}}</br>
+
+
+<p>Instance Type</p>
+<ul>
+
+    {% for choice in form.instance_type %}
+   		{% if choice.choice_value == "yours_choice" %}
+   		{{ choice }} <input id="other_text"type="text" name="other_reason" />
+   		{% else %}
+   			{{choice}}</br>
+   		{% endif %}
+        
+    {% endfor %}
+
+</ul>
+Storage requirement (in GB): </br></br>  {{form.storage}} </br></br>
+Customer Location : </br></br>  {{form.customer}} </br></br>
+Stack : </br>  {{form.stack}}</a> </br></br>
+Software specifications :</br> {{form.specification}} </br>
+Do you need S3 bucket? :</br> {{form.s3backet}} </br>
+Do you need a server access? If yes, please share your public key. :</br> {{form.server_access}} </br>
+Do you need a DB access? :</br> {{form.db_access}} </br>
+If you want specify something, please write it below :</br> {{form.summary}} </br>
+
+<input type = "submit" value="submit">
+</form>
+
+
+<div id="div3" class="targetDiv" >
+
+<table>
+
+<td>
+{% for i in test.0 %}
+{{i}}<br>
+{% endfor %}
+</td>
+
+<td>
+{% for i in test.1 %}
+{{i}}<br>
+{% endfor %}
+</td>
+
+<td>
+{% for i in test.2 %}
+{{i}}<br>
+{% endfor %}
+</td>
+
+<td>
+{% for i in test.3 %}
+{{i}}<br>
+{% endfor %}
+</td>
+
+<td>
+{% for i in test.4 %}
+{{i}}<br>
+{% endfor %}
+</td>
+
+<td>
+{% for i in test.5 %}
+{{i}}<br>
+{% endfor %}
+</td>
+</table>
+
+
+</div>
+
+
+
+<script>
+$('.targetDiv').hide();
+$('.show').click(function () {
+    $('.targetDiv').hide();
+    $('#div' + $(this).attr('target')).show();
+});
+</script>
+{% endif %}
+</body>
