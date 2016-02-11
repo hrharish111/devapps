@@ -2,11 +2,11 @@
 
 
 {% include "devapps/form_data.html" %}
-
-<input type="text" id="search" placeholder="Type to search">
+<font color="red">{{data}}</font>
+<h4>Search  <input type="text" id="search" placeholder="Type to search..." /></h4>
 
 <div id="div3" class="targetDiv" >
-<table id ="table" border="1" style="width:100%">
+<table id ="table" border="1" style="width:100%;">
 <tr>
 <th>Instance Name</th>
 <th>Region</th>
@@ -36,28 +36,33 @@
 <script type="text/javascript" src="{% static 'devapps/paging.js' %}"></script> 
 
 
-<script type="text/javascript">
+ <script type="text/javascript">
             $(document).ready(function() {
                 $('#table').paging({limit:11});
             });
+            
+            
+                 // Write on keyup event of keyword input element
+    		$("#search").keyup(function(){
+       						 _this = this;
+       		 // Show only matching TR, hide rest of them
+        	$.each($("#table tbody tr"), function() {
+        	
+        		
+        		
+            	if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+               	$(this).hide();               	             	
+               	
+            	else	
+           				$(this).show();
+        		});
+ 		
+    		});
+ 
+            
+            
     </script>
 
-<script>
-
-     // Write on keyup event of keyword input element
-    $("#search").keyup(function(){
-        _this = this;
-        // Show only matching TR, hide rest of them
-        $.each($("#table tbody tr"), function() {
-            if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-               $(this).hide();
-            else
-               $(this).show();                
-        });
-    }); 
-
-
-</script>
 
 
 <style>

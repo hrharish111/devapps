@@ -32,7 +32,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'harish.hr@above-inc.com'
-EMAIL_HOST_PASSWORD = 'rudresh111'
+EMAIL_HOST_PASSWORD = '########'
 
 
 # Application definition

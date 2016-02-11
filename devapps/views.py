@@ -160,7 +160,7 @@ def user_details(request):
  
  
 @login_required(login_url="user_info")
-def existance_list(request):
+def existance_list(request,data = None):
     
     region_list = ["ap-southeast-1","us-west-1"]
     access_key = "AKIAJHJBI6HUTHFUD3RA"
@@ -179,7 +179,10 @@ def existance_list(request):
                     instance_list.append(instance_each)
                    
     existing_list = instance_list
-    return render(request,'devapps/existinginstance.html',{'existing':existing_list})
+    
+    if data is None:
+        data = "" 
+    return render(request,'devapps/existinginstance.html',{'existing':existing_list,'data':data})
 
 
 
@@ -196,6 +199,7 @@ def existance_list(request):
 
  
 def Project_view(request):
+    print request.method
     instance_name = request.GET.get('insname')
     region = request.GET.get('region')
     instance_id = request.GET.get('ins_id')
@@ -219,8 +223,12 @@ def Project_save(request):
         form = Project_list(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Thank you your request has been saved")
-             
+            
+            data = "Thank you, your request has been saved"
+            return existance_list(request,data)
+        else:
+            data = "Your form is not saved"
+            return existance_list(request,data) 
     return HttpResponse("success")
 #  
 #  
