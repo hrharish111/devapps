@@ -209,11 +209,19 @@ def Project_view(request):
      
     try:
         saved_data = Project_data.objects.get(instance_name=instance_name,instance_id=instance_id)
-        return HttpResponse(saved_data)
+        saved_db = ({"saved_instance":saved_data.instance_name,
+                      "saved_region":saved_data.region,
+                      "saved_id":saved_data.instance_id,
+                      "saved_state":saved_data.instance_state,
+                      "saved_ip":saved_data.instance_ip,
+                      "saved_type":saved_data.instance_type
+                      })
+        return render(request,'devapps/about.html',{"saved_db":saved_db})
          
-    except:
+    except Exception as e:
+        print e
         form = Project_list(initial ={'instance_name':instance_name,'region':region,'instance_id':instance_id,'instance_state':instance_state,'instance_ip':instance_ip,'instance_type':instance_type})
-        return render(request,"devapps/projectformview.html",{'data':form})
+        return render(request,'devapps/projectformview.html',{'data':form})
          
  
  
