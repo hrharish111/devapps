@@ -16,11 +16,12 @@ from django.core.urlresolvers import reverse
 # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import boto.ec2
-
+import os
+print os.getcwd()
 def Home_page(request):
-    flow=client.flow_from_clientsecrets("provision/templates/devapps/client_secret_1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleusercontent.com.json",
+    flow=client.flow_from_clientsecrets("/home/devops/devappserver/devapps/templates/devapps/client_secret_1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleusercontent.com.json",
                                         scope='https://www.googleapis.com/auth/userinfo.email',
-                                        redirect_uri='http://localhost:8000/home_page'
+                                        redirect_uri='http://192.168.0.186.xip.io:8000/home_page'
                                         )
      
     flow.params['include_granted_scopes']="true"
@@ -67,18 +68,22 @@ def user_info(request):
         password = result['id']
     else:
         return HttpResponse("Nothing")
-
+    
+    print password,username	
     try:
         saved_user = User.objects.get(username = username,password=password)   
     except Exception as e:
-        saved_user = User.objects.create(username=username,password=password)
+        print e
+        saved_user = User(username=username,password=password)
+        saved_user.save()
         
      
     try:    
         user = authenticate(username=saved_user, password=password)
          
     except Exception as e:
-        return HttpResponse("please enter the valid user name and password",e)
+	print e
+        return HttpResponse("please enter the valid user name and password")
     if user is not None:
         if user.is_active:
             login(request,user)

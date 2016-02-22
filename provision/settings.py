@@ -30,9 +30,9 @@ ALLOWED_HOSTS = []
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+MAIL_PORT = 587
 EMAIL_HOST_USER = 'harish.hr@above-inc.com'
-EMAIL_HOST_PASSWORD = '########'
+EMAIL_HOST_PASSWORD = 'rudresh111'
 
 
 # Application definition
@@ -44,9 +44,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+#   'rest_framework',
     'devapps',
-    'jsonify',
+#   'jsonify',
     
 )
 
@@ -54,9 +54,9 @@ CLIENT_ID = '1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleuserconte
 
 CORS_ORIGIN_ALLOW_ALL = True
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.google.GoogleOAuthBackend',
-    'social_auth.backends.google.GoogleOAuth2Backend',
-    'social_auth.backends.google.GoogleBackend',
+#   'social_auth.backends.google.GoogleOAuthBackend',
+#    'social_auth.backends.google.GoogleOAuth2Backend',
+#    'social_auth.backends.google.GoogleBackend',
     'oauth2_provider.backends.OAuth2Backend',
     'django.contrib.auth.backends.ModelBackend',
     'devapps.backends.ClientAuthBackend'
@@ -72,9 +72,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+#    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
+#    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -102,8 +102,8 @@ TEMPLATES = [
                 'django.core.context_processors.static',
                 'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
+#                'social.apps.django_app.context_processors.backends',
+#                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
