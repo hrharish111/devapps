@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
+
 class Created_form(models.Model):
         user_key =models.ForeignKey(User)
         project_Name = models.CharField(max_length=100,unique = True)
@@ -25,7 +26,9 @@ class Project_data(models.Model):
     instance_state = models.CharField(max_length = 100)
     instance_ip = models.CharField(max_length = 100)
     instance_type = models.CharField(max_length=100)
-  
+    application_url = models.URLField()
+    database_url = models.URLField()
+    testing_url = models.URLField()
     def __str__(self):
         return self.instance_name
     

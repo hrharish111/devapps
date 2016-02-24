@@ -17,11 +17,12 @@ from django.core.urlresolvers import reverse
 
 import boto.ec2
 import os
-print os.getcwd()
+from boto.connection import HTTPResponse
+clienturl =  os.getcwd()+"/provision/templates/devapps/client_secret_1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleusercontent.com.json"
 def Home_page(request):
-    flow=client.flow_from_clientsecrets("/home/devops/devappserver/devapps/templates/devapps/client_secret_1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleusercontent.com.json",
+    flow=client.flow_from_clientsecrets(clienturl,
                                         scope='https://www.googleapis.com/auth/userinfo.email',
-                                        redirect_uri='http://192.168.0.186.xip.io:8000/home_page'
+                                        redirect_uri='http://localhost:8000/home_page'
                                         )
      
     flow.params['include_granted_scopes']="true"
@@ -58,32 +59,31 @@ def user_info(request):
     service = discovery.build('plus', 'v1', http=http_auth)
     google_request = service.people().get(userId='me')
     result = google_request.execute(http=http_auth)
-
-
+    
     if 'domain' not in result.keys():
         return HttpResponse("Not a valid user to register") 
     
     elif result['domain'] == "above-inc.com":
-        username = result['emails'][0]['value']
+        email = result['emails'][0]['value']
+        username = email[:-14]
         password = result['id']
     else:
         return HttpResponse("Nothing")
-    
-    print password,username	
     try:
-        saved_user = User.objects.get(username = username,password=password)   
+        saved_user = User.objects.get(username = username,password=password,email = email)   
     except Exception as e:
         print e
-        saved_user = User(username=username,password=password)
+        saved_user = User(username=username,password=password,email = email)
         saved_user.save()
-        
-     
+    
+            
     try:    
         user = authenticate(username=saved_user, password=password)
          
     except Exception as e:
-	print e
-        return HttpResponse("please enter the valid user name and password")
+        print e
+        return HTTPResponse("not authenticated")
+    
     if user is not None:
         if user.is_active:
             login(request,user)
@@ -91,6 +91,7 @@ def user_info(request):
         else:
             return HttpResponseRedirect(reverse("home_page"))
     else:
+        print "some were wrong in else login else"
         return HttpResponseRedirect(reverse("home_page"))    
  
  
@@ -101,8 +102,9 @@ def user_info(request):
 
 
 
-@login_required(login_url="user_info")
+
 @csrf_exempt
+@login_required(login_url="user_info")
 def Create_my_form(request):
     if request.method =='POST':
         form = request_form(request.POST)
@@ -131,12 +133,10 @@ def Create_my_form(request):
             except:
                 form = request_form()
                 return render(request,'devapps/createrequest.html',{"form":form,"invalid":"Form is invalid"})
-
             
-             
             try:
                 send_mail('server request', 'Thank for the request please wait until the admin review your request', 'harish.hr@above-inc.com',
-                          [str(request.user)], fail_silently=False)
+                          [str(request.user.email)], fail_silently=False)
                  
                 recipient_list = User.objects.get(is_superuser=1)
                 send_mail('new request', "please click the link below"+ "http:localhost:8000/test", 'harish.hr@above-inc.com', [str(recipient_list.email)])
@@ -204,13 +204,15 @@ def existance_list(request,data = None):
 
  
 def Project_view(request):
-    print request.method
     instance_name = request.GET.get('insname')
     region = request.GET.get('region')
     instance_id = request.GET.get('ins_id')
     instance_state = request.GET.get('ins_state')
     instance_ip = request.GET.get('ins_ip')
     instance_type = request.GET.get('ins_type')
+#     application_url = request.GET.get('app_url')
+#     database_url = request.GET.get('database_url')
+#     testing_url = request.GET.get('testing_url')
      
     try:
         saved_data = Project_data.objects.get(instance_name=instance_name,instance_id=instance_id)
@@ -219,7 +221,10 @@ def Project_view(request):
                       "saved_id":saved_data.instance_id,
                       "saved_state":saved_data.instance_state,
                       "saved_ip":saved_data.instance_ip,
-                      "saved_type":saved_data.instance_type
+                      "saved_type":saved_data.instance_type,
+                      "application_url":saved_data.application_url,
+                      "database_url":saved_data.database_url,
+                      "testing_url":saved_data.testing_url
                       })
         return render(request,'devapps/about.html',{"saved_db":saved_db})
          

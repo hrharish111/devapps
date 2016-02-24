@@ -34,11 +34,14 @@ class request_form(forms.Form):
         server_access =forms.ChoiceField(choices=s3backetoption,widget=forms.RadioSelect())
         db_access =forms.ChoiceField(choices=s3backetoption,widget=forms.RadioSelect())
         summary = forms.CharField(widget=forms.Textarea)
+        application_url = forms.URLField()
+        database_url = forms.URLField()
+        testing_url = forms.URLField()
 
 
 class Project_list(ModelForm):
     class Meta:
         model = Project_data
-        fields = ['instance_name','region','instance_id','instance_state','instance_ip','instance_type']
+        fields = ['instance_name','region','instance_id','instance_state','instance_ip','instance_type','application_url','database_url','testing_url']
 
         
