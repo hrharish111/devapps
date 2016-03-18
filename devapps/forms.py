@@ -44,4 +44,5 @@ class Project_list(ModelForm):
         model = Project_data
         fields = ['instance_name','region','instance_id','instance_state','instance_ip','instance_type','application_url','database_url','testing_url']
 
-        
+
+    

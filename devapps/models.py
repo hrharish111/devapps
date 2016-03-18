@@ -3,6 +3,11 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 
+class Employee(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    username = models.CharField(max_length =100)
+
+
 class Created_form(models.Model):
         user_key =models.ForeignKey(User)
         project_Name = models.CharField(max_length=100,unique = True)
@@ -32,7 +37,7 @@ class Project_data(models.Model):
     def __str__(self):
         return self.instance_name
     
-    
+        
     
     
     

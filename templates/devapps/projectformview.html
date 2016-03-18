@@ -1,5 +1,13 @@
 
 <form action = '../projectsave' method="post">
 {{data.as_p}}
+<script type="text/javascript">
+document.getElementById("id_instance_name").disabled = true;
+document.getElementById("id_region").disabled = true;
+document.getElementById("id_instance_id").disabled = true;
+document.getElementById("id_instance_state").disabled = true;
+document.getElementById("id_instance_ip").disabled = true;
+document.getElementById("id_instance_type").disabled = true;
+</script>
 <input type = "submit" value="submit">
 </form>

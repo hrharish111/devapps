@@ -52,6 +52,8 @@ INSTALLED_APPS = (
 
 CLIENT_ID = '1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleusercontent.com'
 
+
+
 CORS_ORIGIN_ALLOW_ALL = True
 AUTHENTICATION_BACKENDS = (
 #   'social_auth.backends.google.GoogleOAuthBackend',
