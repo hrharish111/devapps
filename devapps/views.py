@@ -12,13 +12,25 @@ from devapps.models import Created_form,Project_data
 from .forms import request_form,Project_list
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+import re
+import json
+import dateutil.parser
 
 # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import boto.ec2
 import os
 from boto.connection import HTTPResponse
+import requests
+from datetime import datetime,timedelta
 clienturl =  os.getcwd()+"/provision/templates/devapps/client_secret_1069477560960-mpicrpqrd0mrahleo8nn40lmrtqpcaus.apps.googleusercontent.com.json"
+
+
+
+
+
 def Home_page(request):
     flow=client.flow_from_clientsecrets(clienturl,
                                         scope='https://www.googleapis.com/auth/userinfo.email',
@@ -248,27 +260,94 @@ def Project_save(request):
             data = "Your form is not saved"
             return existance_list(request,data) 
     return HttpResponse("success")
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-#  
-# @login_required(login_url="user_info")
-# def Server_conformation(request):
-#      
-#     if request.user.is_staff:
-#         return HttpResponse ("ok sir")
-#          
-#     else:
-#         return HttpResponse( "get lost")
-#      
-#      
-#      
-#     return HttpResponse("success")
+
+
+
+def Servermonitor(request):
+    r = requests.get('http://52.9.185.212:4567/results/')
+    ptolist =[]
+    
+    for i in r.json():
+        ptolist.append(i['client'])
+    prolist = list(set(ptolist))
+    
+    return render(request,'devapps/servermonitorlist.html',{'prolist':prolist})
+
+def Monitorlist(request):
+    proname = request.GET.get('proname')
+    client = MongoClient()
+    db = client.mcollection
+    mcursor = db.mcollection.find({'project':proname})
+    mchecks = []
+    for document in mcursor:
+        mchecks.append(document['mtype'])
+    mcheck = list(set(mchecks))
+    presentdate = datetime.isoformat(datetime.now())
+    lasthourdate = datetime.isoformat(datetime.now()-timedelta(hours =1))
+    mdategraph ={'lasthourdate':lasthourdate,"presentdate":presentdate}
+    return render(request,'devapps/monitorlistparm.html',{'mcheck':mcheck,'proname':proname,"mdategraph":mdategraph})
+
+#for converting date to google charts date
+
+def mdate(val):
+    a = "Date("+str(val.year)+','+str(val.month-1)+','+str(val.day)+","+str(val.hour)+","+str(val.minute)+")"
+    return a
+
+#mongodb database collection
+
+def MongodbCollection():
+    client = MongoClient()
+    dbCollection = client.mcollection
+    return dbCollection
+
+#for monitoring memory free
+    
+def MonitorCheckMemory(request):
+    project = request.GET.get('proname')
+    mtype = request.GET.get('mtype')
+    pdate = request.GET.get('pdate')
+    ldate = request.GET.get('ldate')
+    if pdate ==None:
+        pdate = datetime.isoformat(datetime.now())
+    if ldate ==None:    
+        ldate = datetime.isoformat(datetime.now()-timedelta(hours =1))
+
+    mcursor = MongodbCollection().mcollection.find({"project":project,"mtype":mtype,"mdatetime":{'$gte':ldate,'$lt':pdate}})
+    
+    regex = r'([0-9.]+)?%'
+    
+    result = [[mdate(dateutil.parser.parse(item['mdatetime'])),int(re.findall(regex,item['matrix'].strip())[0])] for item in mcursor]
+    print result
+ 
+    return render(request,'devapps/mgraph.html',{'result':result} )
+
+def MonitorCheckCpu(request):
+    project = request.GET.get('proname')
+    mtype = request.GET.get('mtype')
+    pdate = request.GET.get('pdate')
+    ldate = request.GET.get('ldate')
+    
+    if pdate ==None:
+        pdate = datetime.isoformat(datetime.now())
+    if ldate ==None:    
+        ldate = datetime.isoformat(datetime.now()-timedelta(hours =1))
+        
+    mcursor = MongodbCollection().mcollection.find({"project":project,"mtype":mtype,"mdatetime":{'$gte':ldate,'$lt':pdate}})
+    
+  
+
+    result = []
+    for item in mcursor:
+        print item
+        #result = [[item['matrix'][18:],mdate(dateutil.parser.parse(item['mdatetime']))]for item in mcursor]
+        tmp_rs = [float(value) for value in map(lambda x:x.split('=')[1], item['matrix'][18:].strip().split(' '))]
+        tmp_rs.append(mdate(dateutil.parser.parse(item['mdatetime'])))
+        result.append(tmp_rs)
+        
+    print result
+    
+    return render(request,'devapps/monitorcheckcpu.html',{"result":result})
+
+
+
+

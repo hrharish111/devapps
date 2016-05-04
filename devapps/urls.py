@@ -22,9 +22,17 @@ url(r'user_info',views.user_info,name="user_info"),
 
 url(r'^userdetails/$',views.user_details,name = "userdetails"),
 url(r'^create_my_form',views.Create_my_form,name="create_my_form"),
-url(r'existinglist',views.existance_list,name = "existinglist"),
+url(r'^existinglist',views.existance_list,name = "existinglist"),
 url(r'^projectview',views.Project_view,name = "projectview"),
-url(r'^projectsave',views.Project_save,name = "projectsave")
+url(r'^projectsave',views.Project_save,name = "projectsave"),
+
+
+url(r'^servermonitor/',views.Servermonitor,name = "servermonitor"),
+url(r'^monitorlist',views.Monitorlist,name = "monitorlist"),
+url(r'^monitordetailscheck_mem/',views.MonitorCheckMemory,name = "monitordetailscheck_mem"),
+url(r'^monitordetailscheck_cpu/',views.MonitorCheckCpu,name = "monitordetailscheck_cpu"),
+
+
 
 
 

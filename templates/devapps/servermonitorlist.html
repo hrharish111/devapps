@@ -1,0 +1,5 @@
+{% include "devapps/form_data.html" %}
+
+{% for i in prolist %}
+ <a href = "/monitorlist/?proname={{i}}" >{{i}}</a> <br />
+{% endfor %}
